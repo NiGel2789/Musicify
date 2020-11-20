@@ -25,9 +25,9 @@
 				<!-- Menu -->
 				<nav id="menu">
 					<ul class="links">
-						<li class="active"> <a href="listings.html">Dashboard</a> </li>
+						<li> <a href="listings.html">Dashboard</a> </li>
 
-		                <li> <a href="createEntry.html">Add a Song </a> </li>
+		                <li class="active"> <a href="createEntry.html">Add a Song </a> </li>
 
 		                <li> <a href="updateEntry.html">Update an Entry</a> </li>
 
@@ -44,8 +44,36 @@
 							<section id="one">
 								<div class="inner">
 									<header class="major">
-										<h1>Music Library</h1>
-									</header>
+										<h1>Create a Song Entry</h1>
+                                    </header>
+                                    <form id="register" method="get" action="register.php">    
+                                        <label><b>Song Title     
+                                        </b>    
+                                        </label>    
+                                        <input type="text" name="Title" id="Title" placeholder="e.g. Blinding Lights">    
+                                        <br><br>   
+                                        <label><b>Artist ID     
+                                        </b>    
+                                        </label>    
+                                        <input type="text" name="ArtistID" id="ArtistID" placeholder="xxx">    
+                                        <br><br>    
+                                        <label><b>Album ID     
+                                        </b>    
+                                        </label>    
+                                        <input type="text" name="AlbumID" id="AlbumID" placeholder="xxx">    
+                                        <br><br>    
+                                        <label><b>Genre ID    
+                                        </b>    
+                                        </label>    
+                                        <input type="text" name="GenreID" id="GenreID" placeholder="e.g. Rock">    
+                                        <br><br>       
+                                        <label><b>Length of Song (in seconds)    
+                                        </b>    
+                                        </label>    
+                                        <input type="text" name="SongLength" id="SongLength" placeholder="345">    
+                                        <br><br>        
+                                        <input type="button" name="log" id="log" value="Add to Musicify">                      
+                                    </form>
 									<!-- Database Code here -->
 								</div>
 							</section>
