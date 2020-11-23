@@ -36,7 +36,7 @@
                                         <label><b>Select an Album from this dropdown menu:    
                                         </b>    
                                         </label>    
-                                        <select id="artID">
+                                        <select id="aID">
                                             <?php
 											// connect to database
 											$dbconn = pg_connect("host=localhost dbname=postgres user=postgres password=postgres")

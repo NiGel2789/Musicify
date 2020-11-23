@@ -21,18 +21,28 @@
         <header class="major">
             <h1>Delete a Song Entry</h1>
         </header>     
-    <form id="deleteSong" method="get" action="login.php">    
+    <form id="deleteSong" method="post" action="./php/deleteSong.php">    
         <label><b>Select a track from this dropdown menu:    
         </b>    
         </label>    
-        <select id="aID">
-            <option value="1">1 - Blinding Lights </option>
-            <option value="2">2 - All I Want For Christmas Is You</option>
-            <option value="3">3 - I Fall Apart</option>
-            <option value="4">4 - Sad Machine</option>
-          </select>      
+        <select name="tID">
+                                            <?php
+											// connect to database
+											$dbconn = pg_connect("host=localhost dbname=postgres user=postgres password=postgres")
+												or die('Could not connect: ' . pg_last_error());
+											
+											// postgres query : select song id
+											$query = 'SELECT song.tid, title.name FROM song, title WHERE song.tid = title.tid';
+											$result = pg_query($query) or die('Query failed: ' . pg_last_error());
+											
+											// print results in html
+											while ($row = pg_fetch_array($result, null, PGSQL_ASSOC)) {
+												echo "<option value='" . $row['tid'] . "'>" . $row['tid'] . ' - ' . $row['name'] . "</option>";
+											}
+											?>
+        </select>        
         <br><br>       
-        <input type="button" name="log" id="log" onclick="window.location.href='listings.html';" value="Delete This Entry">              
+        <input type="submit" name="delete" id="delete" style="float:right">               
     </form>     
     </div>   
     <div style="height:200px; width:100%; clear:both;"></div> 
