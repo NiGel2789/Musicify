@@ -1,7 +1,8 @@
+
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Artist Page</title>
+		<title>Create an Album Entry</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
@@ -26,7 +27,7 @@
 					<ul class="links">
 						<li> <a href="listings.html">Dashboard</a> </li>
 
-		                <li> <a href="createEntry.html">Create </a> </li>
+		                <li class="active"> <a href="createEntry.html">Create </a> </li>
 
 		                <li> <a href="updateEntry.html">Update an Entry</a> </li>
 
@@ -40,26 +41,30 @@
 					<div id="main">
 
 						<!-- One -->
-							<section >
+							<section id="one">
 								<div class="inner">
 									<header class="major">
-										<h1>Artist Page
-									</header>
-									
-									<div class="row">
-										<div class="col-md-3 col-sm-6 co-xs-12 text-center">
-											<img src="images/theweeknd.jpeg" class="img-responsive" alt="">	
-
-											<h3>The Weeknd</h3>
-
-											<h4><em>Multi-Grammy Award Winning Artist</em></h4>
-
-											<ul class="icons">
-												<li><a href="#" class="icon alt fa-twitter"><span class="label">Twitter</span></a></li>
-												<li><a href="#" class="icon alt fa-instagram"><span class="label">Instagram</span></a></li>
-											</ul>
-										</div>
-									</div>
+										<h1>Create an Album Entry</h1>
+                                    </header>
+                                    <form id="register" method="get" action="register.php">    
+                                        <label><b>Album Name    
+                                        </b>    
+                                        </label>    
+                                        <input type="text" name="Title" id="Title" placeholder="e.g. Worlds">    
+                                        <br><br>   
+                                        <label><b>Release Year    
+                                        </b>    
+                                        </label>    
+                                        <input type="text" name="relYear" id="relYear" placeholder="mm/dd/yyyy, e.g. 11/27/1999">    
+                                        <br><br>    
+                                        <label><b>Album ID     
+                                        </b>    
+                                        </label>    
+                                        <input type="text" name="AlbumID" id="AlbumID" placeholder="xxx">    
+                                        <br><br>          
+                                        <input type="button" name="log" id="log" value="Add to Musicify">                      
+                                    </form>
+									<!-- Database Code here -->
 								</div>
 							</section>
 
