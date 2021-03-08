@@ -25,7 +25,7 @@
 				<!-- Menu -->
 				<nav id="menu">
 					<ul class="links">
-						<li> <a href="listings.html">Dashboard</a> </li>
+						<li> <a href="listings.php">Dashboard</a> </li>
 
 		                <li class="active"> <a href="createEntry.html">Create </a> </li>
 
@@ -46,7 +46,7 @@
 									<header class="major">
 										<h1>Create an Artist Entry</h1>
                                     </header>
-                                    <form id="register" method="get" action="register.php">    
+                                    <form id="register" method="post" action="./php/insertArtist.php">    
                                         <label><b>Artist Full Name    
                                         </b>    
                                         </label>    
@@ -57,7 +57,7 @@
                                         </label>    
                                         <input type="text" name="ArtistID" id="ArtistID" placeholder="xxx">           
                                         <br><br>        
-                                        <input type="button" name="log" id="log" value="Add to Musicify">                      
+                                        <input type="submit" name="log" id="log" value="Add to Musicify">                      
                                     </form>
 									<!-- Database Code here -->
 								</div>

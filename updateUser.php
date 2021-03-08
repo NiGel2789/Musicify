@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Update An Artist</title>
+		<title>Update A User Entry</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
@@ -18,7 +18,7 @@
                     <header id="header" class="alt">
                         <a href="index.html" class="logo"><strong>Musicify</strong> <span>audio's new home</span></a>
                         <nav>
-                            <a href="updateEntry.html">Update something else?</a>
+                            <a href="admin.html">Back to Admin Home</a>
                         </nav>
                     </header> 
 
@@ -29,25 +29,25 @@
 							<section id="one">
 								<div class="inner">
 									<header class="major">
-										<h1>Update an Artist Entry</h1>
+										<h1>Update a User Entry</h1>
                                     </header>
-                                    <form id="register" method="post" action="./php/updateArtist.php">    
-                                        <label><b>View a list of Artists from this dropdown menu:    
+                                    <form id="register" method="post" action="./php/updateUser.php">    
+                                        <label><b>Select a user from this dropdown menu:    
                                         </b>    
                                         </label>    
-                                        <select id="artID">
-											<?php
+                                        <select name="uID">
+                                            <?php
 											// connect to database
 											$dbconn = pg_connect("host=localhost dbname=postgres user=postgres password=postgres")
 												or die('Could not connect: ' . pg_last_error());
 											
-											// postgres query : select artist id
-											$query = 'SELECT artist.artid, artist.name FROM artist';
+											// postgres query : select song id
+											$query = 'SELECT uid, name FROM users';
 											$result = pg_query($query) or die('Query failed: ' . pg_last_error());
 											
 											// print results in html
 											while ($row = pg_fetch_array($result, null, PGSQL_ASSOC)) {
-												echo "<option value='" . $row['artid'] . "'>" . $row['artid'] . ' - ' . $row['name'] . "</option>";
+												echo "<option value='" . $row['uid'] . "'>" . $row['uid'] . ' - ' . $row['name'] . "</option>";
 											}
 		
 											// release result
@@ -56,23 +56,33 @@
 											// close connection
 											pg_close($dbconn);
 											?>
-										  </select>      
+                                          </select>      
                                         <br><br>
-
-                                        <!-- Artist Details to update below. -->
-					 <label><b>Artist ID
-                                        </b>
-                                        </label>
-                                        <input type="text" name="ArtistID" id="ArtistID" placeholder="1234">
-                                        <br><br>
-					<label><b>Artist Full Name    
+                                        <!-- Song Details to update below. -->
+                                        <label><b>User Name     
                                         </b>    
                                         </label>    
-                                        <input type="text" name="Title" id="Title" placeholder="e.g. Mariah Carey">    
-                                        <br><br>        
-                                        <input type="submit" name="log" id="log" value="Update Entry">                      
+										<input type="text" name="Title" id="Title" placeholder="e.g. John Doe">    
+										<br></br>
+										<label><b>Email     
+                                        </b>    
+                                        </label>    
+										<input type="text" name="Email" id="Email" placeholder="e.g. johndoe@somewhere.com">   
+                                        <br><br>    
+                                        <label><b>Gender    
+                                        </b>    
+                                        </label>    
+										<input type="text" name="Gender" id="Gender" placeholder="e.g. M/F"> 
+                                        <br><br>    
+                                        <label><b>Birthday    
+                                        </b>    
+                                        </label>    
+                                        <input type="date" name="bday" id="bday" style="background-color : rgba(212, 212, 255, 0.035)">    
+                                        <br><br>  
+
+                    <input type="submit" name="log" id="log" value="Update Entry">
+                    		    
                                     </form> 
-									<!-- Database Code here -->
 								</div>
 							</section>
 
@@ -87,7 +97,7 @@
 							<li><a href="#" class="icon alt fa-instagram"><span class="label">Instagram</span></a></li>
 						</ul>
 						<ul class="copyright">
-							<li>Copyright © 2020 Musicify, LLC.</li>
+							<li>Copyright Â© 2020 Musicify, LLC.</li>
 						</ul>
 					</div>
 				</footer>

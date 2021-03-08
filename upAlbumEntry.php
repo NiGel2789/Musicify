@@ -32,7 +32,7 @@
 									<header class="major">
 										<h1>Update an Album Entry</h1>
                                     </header>
-                                    <form id="register" method="get" action="register.php">    
+                                    <form id="register" method="post" action="./php/updateAlbum.php">    
                                         <label><b>Select an Album from this dropdown menu:    
                                         </b>    
                                         </label>    
@@ -61,7 +61,13 @@
                                         <br><br>
 
                                         <!-- Artist Details to update below. -->
-                                        <label><b>Album Name    
+					
+					<label><b>Album ID
+                                        </b>
+                                        </label>
+                                        <input type="text" name="AlbumID" id="AlbumID" placeholder="e.g. 1">
+                                        <br><br>
+					<label><b>Album Name    
                                         </b>    
                                         </label>    
                                         <input type="text" name="Title" id="Title" placeholder="e.g. Mariah Carey">    
@@ -69,9 +75,9 @@
                                         <label><b>Release Year    
                                         </b>    
                                         </label>    
-                                        <input type="text" name="relYear" id="relYear" placeholder="mm/dd/yyyy, e.g. 11/27/1999">    
+                                        <input type="text" name="relYear" id="relYear" placeholder="1999">    
                                         <br><br> 
-                                        <input type="button" name="log" id="log" value="Update Entry">                      
+                                        <input type="submit" name="log" id="log" value="Update Entry">                      
                                     </form> 
 									<!-- Database Code here -->
 								</div>

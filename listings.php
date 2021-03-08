@@ -32,6 +32,8 @@
 		                <li> <a href="updateEntry.html">Update an Entry</a> </li>
 
 		                <li> <a href="deleteEntry.html">Delete an Entry</a> </li>
+
+				<li> <a href="admin.html">Admin Tools</a> </li>
 		                
 		                <li> <a href="loggedOut.html">Log Out</a> </li>
             		</ul>
@@ -52,16 +54,40 @@ $dbconn = pg_connect("host=localhost dbname=postgres user=postgres password=post
     or die('Could not connect: ' . pg_last_error());
 
 // postgres query : select all tracks
-$query = 'SELECT title.name, artist.name, album.name, title.length_sec, genre.name  FROM title, song, artist, album, genre, has WHERE song.tid = title.tid AND song.artid = artist.artid AND song.aid = album.aid AND song.tid = has.tid AND has.gid = genre.gid;
-';
+$query = 'SELECT DISTINCT ON (title.name) title.name, artist.name, album.name, title.length_sec, genre.name FROM title, song, artist, album, genre, has WHERE song.tid = title.tid AND song.artid = artist.artid AND song.aid = album.aid AND song.tid = has.tid AND has.gid = genre.gid;';
+
+//$query = 'SELECT title.name, title.tID FROM title;';
+
 $result = pg_query($query) or die('Query failed: ' . pg_last_error());
 
 // print results in html
-echo "<table>\n";
-while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
-    echo $line['column_name']; // Print a single column data
-    echo print_r($line);       // Print the entire row data
+echo "<table border=2>
+	<tr>
+		<th><b>" . "Song Title" . "</b></th>
+		<th><b>" . "Artist" . "</b></th> 
+		<th><b>" . "Album" . "</b></th> 
+		<th><b>" . "Length" . "</b></th>
+		<th><b>" . "Genre" . "</b></th>  
+	</tr>
+";
+//puts results into table
+
+while($row = pg_fetch_row($result))
+{
+	echo '<tr>';
+	$count = count($row);
+	$y = 0;
+	while($y < $count)
+	{
+		$c_row = current($row);
+		echo '<td style="padding:0 5px 0 0px;">'.$c_row.'</td>';
+		next($row);
+		$y = $y+1;
+	}
+	echo '</tr>';
+	$i = $i+1;
 }
+
 echo "</table>\n";
 
 // release result

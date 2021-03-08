@@ -31,11 +31,11 @@
 									<header class="major">
 										<h1>Update a Genre Entry</h1>
                                     </header>
-                                    <form id="register" method="get" action="register.php">    
-                                        <label><b>Select a Genre from this dropdown menu:    
+                                    <form id="register" method="post" action="./php/updateGenre.php">    
+                                        <label><b>Use this dropdown as a refrence:    
                                         </b>    
                                         </label>    
-                                        <select id="gID">
+                                        <select name="gID">
                                             <?php
 											// connect to database
 											$dbconn = pg_connect("host=localhost dbname=postgres user=postgres password=postgres")
@@ -47,25 +47,25 @@
 											
 											// print results in html
 											while ($row = pg_fetch_array($result, null, PGSQL_ASSOC)) {
-												echo "<option value='" . $row['gid'] . "'>" . $row['aid'] . $row['name'] . "</option>";
+												echo "<option value='" . $row['gid'] . "'>" . $row['gid'] . ' - ' . $row['name'] . "</option>";
 											}
 		
-											// release result
-											pg_free_result($result);
-											
-											// close connection
-											pg_close($dbconn);
 											?>
                                           </select>      
                                         <br><br>
 
                                         <!-- Artist Details to update below. -->
-                                        <label><b>Genre Name    
+					 <label><b>Genre ID
+                                        </b>
+                                        </label>
+                                        <input type="text" name="GenreID" id="GenreID" placeholder="1234">
+                                        <br><br>
+					<label><b>Genre Name    
                                         </b>    
                                         </label>    
                                         <input type="text" name="Title" id="Title" placeholder="e.g. Rock/Pop/EDM">    
                                         <br><br>       
-                                        <input type="button" name="log" id="log" value="Update Entry">                      
+                                        <input type="submit" name="update" id="update" style="float:right">                      
                                     </form> 
 									<!-- Database Code here -->
 								</div>

@@ -31,11 +31,11 @@
 									<header class="major">
 										<h1>Update a Song Entry</h1>
                                     </header>
-                                    <form id="register" method="get" action="register.php">    
+                                    <form id="register" method="post" action="./php/updateSong.php">    
                                         <label><b>Select a track from this dropdown menu:    
                                         </b>    
                                         </label>    
-                                        <select id="tID">
+                                        <select name="tID">
                                             <?php
 											// connect to database
 											$dbconn = pg_connect("host=localhost dbname=postgres user=postgres password=postgres")
@@ -67,7 +67,7 @@
 										<label><b>Artist ID     
                                         </b>    
                                         </label>    
-										<select id="artID">
+										<select name="artID">
 											<?php
 											// connect to database
 											$dbconn = pg_connect("host=localhost dbname=postgres user=postgres password=postgres")
@@ -93,7 +93,7 @@
                                         <label><b>Album ID     
                                         </b>    
                                         </label>    
-										<select id="aID">
+										<select name="aID">
 										<?php
 											// connect to database
 											$dbconn = pg_connect("host=localhost dbname=postgres user=postgres password=postgres")
@@ -119,7 +119,7 @@
                                         <label><b>Genre ID    
                                         </b>    
                                         </label>    
-										<select id="gID">
+										<select name="gID">
 										<?php
 											// connect to database
 											$dbconn = pg_connect("host=localhost dbname=postgres user=postgres password=postgres")
@@ -147,7 +147,21 @@
                                         </label>    
                                         <input type="text" name="SongLength" id="SongLength" placeholder="345">    
                                         <br><br>        
-                                        <input type="button" name="log" id="log" value="Update Entry">                      
+					<input type="submit" name="log" id="log" value="Update Entry">
+						
+					<?php
+                                                                                        // connect to database
+                                                                                        $dbconn = pg_connect("host=localhost dbname=postgres user=postgres password=postgres")
+                                                                                                or die('Could not connect: ' . pg_last_error());
+
+                                                                                        // postgres query : select gre id
+                                                                                        $query = 'SELECT genre.gid, genre.name FROM genre';
+                                                                                        $result = pg_query($query) or die('Query failed: ' . pg_last_error());
+
+                                                                                        // close connection
+                                                                                        pg_close($dbconn);
+                                                                                        ?>
+		    
                                     </form> 
 								</div>
 							</section>

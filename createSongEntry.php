@@ -46,16 +46,25 @@
 									<header class="major">
 										<h1>Create a Song Entry</h1>
                                     </header>
-                                    <form id="register" method="get" action="register.php">    
+                                    <form id="register" method="post" action="./php/insertSong.php">    
                                         <label><b>Song Title     
                                         </b>    
                                         </label>    
-                                        <input type="text" name="Title" id="Title" placeholder="e.g. Blinding Lights">    
+					<input type="text" name="Title" id="Title" placeholder="e.g. Blinding Lights">
+
+                                        <br><br>   
+                                        <label><b>Title ID     
+                                        </b>    
+                                        </label> 
+
+					<input type="text" name="tid" id="tid" placeholder="0000">
+    
                                         <br><br>   
                                         <label><b>Artist ID     
                                         </b>    
-                                        </label>    
-										<select id="artID">
+					</label>    
+
+										<select name="artID">
 											<?php
 											// connect to database
 											$dbconn = pg_connect("host=localhost dbname=postgres user=postgres password=postgres")
@@ -77,11 +86,15 @@
 											pg_close($dbconn);
 											?>
 										  </select>  
+
+					                                        <br><br>
+
+
                                         <br><br>    
                                         <label><b>Album ID     
                                         </b>    
                                         </label>    
-										<select id="aID">
+										<select name="aid">
 										<?php
 											// connect to database
 											$dbconn = pg_connect("host=localhost dbname=postgres user=postgres password=postgres")
@@ -102,12 +115,14 @@
 											// close connection
 											pg_close($dbconn);
 											?>
-										  </select>  
+										  </select>
+
+
                                         <br><br>    
                                         <label><b>Genre ID    
                                         </b>    
                                         </label>    
-										<select id="gID">
+										<select name="gID">
 										<?php
 											// connect to database
 											$dbconn = pg_connect("host=localhost dbname=postgres user=postgres password=postgres")
@@ -119,7 +134,8 @@
 											
 											// print results in html
 											while ($row = pg_fetch_array($result, null, PGSQL_ASSOC)) {
-												echo "<option value='" . $row['gid'] . "'>" . $row['aid'] . $row['name'] . "</option>";
+												echo "<option value='" . $row['gid'] . "'>" . $row['gid'] . ' - ' . $row['name'] . "</option>";
+
 											}
 		
 											// release result
@@ -129,13 +145,16 @@
 											pg_close($dbconn);
 											?>
 										  </select>   
+
+
+					                                        <br><br>
                                         <br><br>       
                                         <label><b>Length of Song (in seconds)    
                                         </b>    
                                         </label>    
                                         <input type="text" name="SongLength" id="SongLength" placeholder="345">    
                                         <br><br>        
-                                        <input type="button" name="log" id="log" value="Add to Musicify">                      
+                                        <input type="submit" name="log" id="log" value="Add to Musicify">                      
                                     </form> 
 									<!-- Database Code here -->
 								</div>

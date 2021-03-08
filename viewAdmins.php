@@ -1,7 +1,8 @@
+
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Homepage</title>
+		<title>View Admins</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
@@ -17,46 +18,70 @@
 				<header id="header" class="alt">
 					<a href="index.html" class="logo"><strong>Musicify</strong> <span>audio's new home</span></a>
 					<nav>
-						<a href="#menu">Menu</a>
+                        <a href="admin.html">Back to Admin Home</a>
 					</nav>
 				</header>
 
-				<!-- Menu -->
-				<nav id="menu">
-					<ul class="links">
-		                <li> <a href="index.html">Home </a> </li>
-		                
-		                <li> <a href="register.html">Register</a> </li>
-
-		                <li><a href="login.html">Login</a></li>
-            		</ul>
-				</nav>
 
 				<!-- Main -->
-				<div id="main" class="alt">
+					<div id="main">
+
 						<!-- One -->
 							<section id="one">
 								<div class="inner">
 									<header class="major">
-										<h1>Music belongs in Musicify.</h1>
+										<h1>All Admins</h1>
 									</header>
+									<?php
+// connect to database
+$dbconn = pg_connect("host=localhost dbname=postgres user=postgres password=postgres")
+    or die('Could not connect: ' . pg_last_error());
+
+// postgres query : select all tracks
+$query = 'SELECT DISTINCT ON (uid) uid, name, email, birthday, gender FROM admin';
+
+$result = pg_query($query) or die('Query failed: ' . pg_last_error());
+
+// print results in html
+echo "<table border=2>
+	<tr>
+		<th><b>" . "UserID" . "</b></th>
+		<th><b>" . "Username" . "</b></th> 
+		<th><b>" . "Email" . "</b></th> 
+		<th><b>" . "Birthday" . "</b></th>
+		<th><b>" . "Gender" . "</b></th>  
+	</tr>
+";
+//puts results into table
+
+while($row = pg_fetch_row($result))
+{
+	echo '<tr>';
+	$count = count($row);
+	$y = 0;
+	while($y < $count)
+	{
+		$c_row = current($row);
+		echo '<td style="padding:0 70px 0 0px;">'.$c_row.'</td>';
+		next($row);
+		$y = $y+1;
+	}
+	echo '</tr>';
+	$i = $i+1;
+}
+
+echo "</table>\n";
+
+// release result
+pg_free_result($result);
+
+// close connection
+pg_close($dbconn);
+?>
 								</div>
 							</section>
-							
-				<!-- Banner -->
-				<section id="banner" class="major">
-					<div class="inner">
-						<header class="major">
-							<h1>Welcome home.</h1>
-						</header>
-						<div class="content">
-							<p>Discover, rate, upload, and listen to all your favorite tunes!</p>
-							<ul class="actions">
-								<li><a href="login.html" class="button next scrolly">Enter</a></li>
-							</ul>
-						</div>
+
 					</div>
-				</section>
 
 				<!-- Footer -->
 				<footer id="footer">
@@ -67,7 +92,7 @@
 							<li><a href="#" class="icon alt fa-instagram"><span class="label">Instagram</span></a></li>
 						</ul>
 						<ul class="copyright">
-							<li>Copyright © 2020 Musicify, LLC.</li>
+							<li>Copyright Â© 2020 Musicify, LLC.</li>
 						</ul>
 					</div>
 				</footer>
